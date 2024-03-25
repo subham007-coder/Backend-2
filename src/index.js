@@ -8,8 +8,14 @@ dotenv.config({
   path: "./env",
 });
 
-// db connect 2st options and best practice
 
+app.get("/", (req, res) =>{
+  res.send("Hello World");
+})
+
+
+
+// db connect 2st options and best practice
 connectDB()
   .then(() => {
     app.listen(process.env.PORT || 8080, (req, res) => {
@@ -19,22 +25,3 @@ connectDB()
   .catch((err) => {
     console.log("MongoDB connection faild :", err);
   });
-
-// db connect 1st options
-/*( async () => {
-  try {
-    await mongoose.connect(`${process.env.MONGODB_URL}/${DB_NAME}`);
-    app.on("error", (err) => {
-      console.log(err);
-      throw err;
-    });
-
-    app.listen(process.env.PORT, () => {
-      console.log(`app listening on port, ${process.env.PORT}`);
-    });
-  } catch (error) {
-    console.log(error);
-    throw err;
-  }
-})();
-*/
